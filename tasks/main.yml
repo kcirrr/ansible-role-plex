@@ -1,0 +1,7 @@
+---
+- name: Import tasks for NUC
+  ansible.builtin.import_tasks: nuc.yml
+  when: plex_nuc is defined and plex_nuc
+
+- name: Import tasks for Plex
+  ansible.builtin.import_tasks: install.yml

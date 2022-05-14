@@ -1,0 +1,17 @@
+---
+- name: Make sure prerequisites are installed
+  ansible.builtin.apt:
+    name: ocl-icd-libopencl1
+    state: present
+    update_cache: True
+    cache_valid_time: 3600 
+
+- name: Make sure prerequisites for Plex on NUC are installed
+  ansible.builtin.apt:
+    deb: "{{ item }}"
+  with_items:
+    - https://github.com/intel/compute-runtime/releases/download/21.49.21786/intel-gmmlib_21.3.3_amd64.deb
+    - https://github.com/intel/intel-graphics-compiler/releases/download/igc-1.0.9441/intel-igc-core_1.0.9441_amd64.deb
+    - https://github.com/intel/intel-graphics-compiler/releases/download/igc-1.0.9441/intel-igc-opencl_1.0.9441_amd64.deb
+    - https://github.com/intel/compute-runtime/releases/download/21.49.21786/intel-opencl-icd_21.49.21786_amd64.deb
+    - https://github.com/intel/compute-runtime/releases/download/21.49.21786/intel-level-zero-gpu_1.2.21786_amd64.deb
